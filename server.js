@@ -213,7 +213,7 @@ const MIME_TYPES = {
     '.ico': 'image/x-icon'
 };
 
-const server = http.createServer(async (req, res) => {
+async function handleRequest(req, res) {
     // CORS headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -995,7 +995,7 @@ const server = http.createServer(async (req, res) => {
     // ==========================================================
     // STATIC ASSETS SERVING
     // ==========================================================
-    let filePath = pathname === '/' ? 'DTI.html' : pathname.replace(/^\//, '');
+    let filePath = (pathname === '/' || pathname === '/index.html') ? 'index.html' : pathname.replace(/^\//, '');
     filePath = path.join(__dirname, decodeURIComponent(filePath));
 
     fs.stat(filePath, (err, stats) => {
@@ -1012,7 +1012,9 @@ const server = http.createServer(async (req, res) => {
         const stream = fs.createReadStream(filePath);
         stream.pipe(res);
     });
-});
+}
+
+const server = http.createServer(handleRequest);
 
 // Start Server and connect to MongoDB Atlas
 if (require.main === module) {
@@ -1023,3 +1025,5 @@ if (require.main === module) {
 }
 
 module.exports = server;
+module.exports.handleRequest = handleRequest;
+
