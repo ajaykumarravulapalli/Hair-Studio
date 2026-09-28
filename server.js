@@ -57,18 +57,15 @@ async function initMongoDB() {
                     serverSelectionTimeoutMS: 15000,
                     connectTimeoutMS: 15000,
                     socketTimeoutMS: 45000,
-                    // Explicit TLS config to prevent SSL alert 80 in Vercel Lambda
-                    tls: true,
-                    tlsAllowInvalidCertificates: false,
                     // Serverless-optimized pool size
                     maxPoolSize: 5,
                     minPoolSize: 0,
                     maxIdleTimeMS: 10000,
-                    // Use the new topology engine
-                    directConnection: false,
                     retryWrites: true,
                     retryReads: true,
-                    w: 'majority'
+                    w: 'majority',
+                    // Use Stable API for Atlas compatibility
+                    serverApi: { version: '1', strict: false, deprecationErrors: false }
                 });
                 await dbClient.connect();
                 mongoDB = dbClient.db(DB_NAME);
