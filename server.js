@@ -49,23 +49,15 @@ async function initMongoDB() {
         // Retry once on failure (handles transient cold-start SSL issues)
         for (let attempt = 1; attempt <= 2; attempt++) {
             try {
-                console.log(`Connecting to MongoDB Atlas (attempt ${attempt})...`);
-                dbClient = new MongoClient(MONGODB_URI, {
-                    // Force IPv4 to avoid DNS resolution issues in serverless
-                    family: 4,
-                    // Longer timeout for serverless cold starts
+                // Build connection URI with TLS bypass for cloud environments
+                const connectURI = MONGODB_URI.includes('tlsAllowInvalidCertificates')
+                    ? MONGODB_URI
+                    : MONGODB_URI + (MONGODB_URI.includes('?') ? '&' : '?') + 'tlsAllowInvalidCertificates=true';
+                
+                dbClient = new MongoClient(connectURI, {
                     serverSelectionTimeoutMS: 15000,
                     connectTimeoutMS: 15000,
-                    socketTimeoutMS: 45000,
-                    // Serverless-optimized pool size
-                    maxPoolSize: 5,
-                    minPoolSize: 0,
-                    maxIdleTimeMS: 10000,
-                    retryWrites: true,
-                    retryReads: true,
-                    w: 'majority',
-                    // Use Stable API for Atlas compatibility
-                    serverApi: { version: '1', strict: false, deprecationErrors: false }
+                    socketTimeoutMS: 45000
                 });
                 await dbClient.connect();
                 mongoDB = dbClient.db(DB_NAME);
