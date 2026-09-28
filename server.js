@@ -43,7 +43,10 @@ async function initMongoDB() {
     dbPromise = (async () => {
         try {
             console.log('Connecting to MongoDB Atlas...');
-            dbClient = new MongoClient(MONGODB_URI);
+            dbClient = new MongoClient(MONGODB_URI, {
+                family: 4,
+                serverSelectionTimeoutMS: 8000
+            });
             await dbClient.connect();
             mongoDB = dbClient.db(DB_NAME);
             console.log(`Connected successfully to MongoDB Atlas database: ${DB_NAME}`);
