@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Studio | Luxury Barber & Hair Styling Salon</title>
+    <meta name="description" content="Experience premium haircuts, beard grooming, hair spa, coloring, and bridal styling at Hair Studio. Book your appointment online today.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="DTI.css">
+</head>
+<body>
+
+    <!-- =======================================================
+         HERO BANNER
+         ======================================================= -->
+    <section id="banner">
+        <!-- Realistic Animated Cyber Neon Mask Layer (Left Eye X, Right Eye X, Mouth Stitches) -->
+        <div class="cyber-neon-overlay" aria-hidden="true">
+            <svg class="cyber-mask-glow" viewBox="0 0 1280 853" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Reusable definitions for neon mask glow marks -->
+                    <g id="maskNeonFeatures">
+                        <!-- 1. LEFT EYE 'X' MARK -->
+                        <line x1="552" y1="345" x2="581" y2="400" />
+                        <line x1="601" y1="355" x2="548" y2="396" />
+
+                        <!-- 2. RIGHT EYE 'X' MARK -->
+                        <line x1="634" y1="360" x2="660" y2="415" />
+                        <line x1="674" y1="370" x2="624" y2="408" />
+
+                        <!-- 3. MOUTH & STITCHED SMILE -->
+                        <!-- Horizontal smile curve -->
+                        <path d="M 528,442 Q 555,456 585,466 Q 615,471 638,467 Q 652,458 662,442" fill="none" />
+                        <!-- Vertical cross stitches -->
+                        <line x1="530" y1="439" x2="532" y2="454" />
+                        <line x1="548" y1="442" x2="550" y2="462" />
+                        <line x1="562" y1="446" x2="564" y2="466" />
+                        <line x1="580" y1="452" x2="582" y2="474" />
+                        <line x1="600" y1="428" x2="600" y2="440" />
+                        <line x1="601" y1="450" x2="601" y2="482" />
+                        <line x1="613" y1="452" x2="613" y2="475" />
+                        <line x1="625" y1="458" x2="625" y2="475" />
+                        <line x1="642" y1="458" x2="642" y2="475" />
+                        <line x1="658" y1="440" x2="660" y2="456" />
+                    </g>
+                </defs>
+
+                <!-- Layer 1: High-Definition Extracted Photo Mask Texture -->
+                <image href="neon_mask_overlay.png" x="0" y="0" width="1280" height="853" class="neon-texture-layer" />
+
+                <!-- Layer 2: Vector Neon Bloom & Glow Layers -->
+                <g class="neon-vector-group">
+                    <!-- Layer 2A: Large Soft Outer Glow / Ambient Bloom -->
+                    <use href="#maskNeonFeatures" class="neon-wire neon-wire-outer" />
+
+                    <!-- Layer 2B: Medium Vibrant Neon Glow -->
+                    <use href="#maskNeonFeatures" class="neon-wire neon-wire-mid" />
+
+                    <!-- Layer 2C: High-Intensity White-Hot LED Center Core -->
+                    <use href="#maskNeonFeatures" class="neon-wire neon-wire-core" />
+                </g>
+            </svg>
+        </div>
+
+        <h1 class="logo">BARBER</h1>
+        
+        <!-- Top Quick Navigation (Real Auth State) -->
+        <div class="top-quick-nav">
+            <button class="top-badge-btn notif-bell-btn" id="topNotifBell" onclick="openNotificationsCenter()" title="Notifications & Alerts">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notif-badge" id="topNotifBadge" style="display: none;">0</span>
+            </button>
+            <a href="#booking" class="top-badge-btn"><i class="fa-solid fa-calendar-plus"></i> Book Online</a>
+            <span id="topAuthButtons" style="display: inline-flex; gap: 8px;">
+                <!-- Populated dynamically: Sign In when logged out, or Dashboard + Logout when authenticated -->
+            </span>
+        </div>
+
+        <div class="banner-text">
+            <h1>Hair Stdio</h1>
+            <p>Style Your Hair Is Style Your Life</p>
+            <div class="banner-btn">
+                <a href="#booking"><span></span>Book Now</a>
+                <a href="#service"><span></span>Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         SIDE NAVIGATION & MENU TOGGLE BUTTON
+         ======================================================= -->
+    <div id="sideNav">
+        <div class="sidenav-header">
+            <h2>Hair Studio</h2>
+            <p>Premium Grooming & Salon</p>
+        </div>
+        <div class="sidenav-user-pill" id="sideNavUserPill">
+            <!-- Populated dynamically with real authenticated user status -->
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#banner"><i class="fa-solid fa-house"></i> HOME</a></li>
+                <li><a href="#features"><i class="fa-solid fa-star"></i> FEATURES</a></li>
+                <li><a href="#service"><i class="fa-solid fa-scissors"></i> SERVICES & PRICING</a></li>
+                <li><a href="#stylists"><i class="fa-solid fa-user-tie"></i> OUR STYLISTS</a></li>
+                <li><a href="#booking"><i class="fa-solid fa-calendar-check"></i> BOOK APPOINTMENT</a></li>
+                <li><a href="#gallery"><i class="fa-solid fa-images"></i> GALLERY</a></li>
+                <li><a href="#offers"><i class="fa-solid fa-tag"></i> SPECIAL OFFERS</a></li>
+                <li><a href="#testimonial"><i class="fa-solid fa-comment-dots"></i> TESTIMONIALS</a></li>
+                <li><a href="javascript:void(0)" onclick="openNotificationsCenter()"><i class="fa-solid fa-bell"></i> NOTIFICATIONS <span id="sideNotifBadge" class="side-notif-pill" style="display: none;">0</span></a></li>
+                <li><a href="javascript:void(0)" onclick="openCustomerDashboard()"><i class="fa-solid fa-chart-user"></i> MY DASHBOARD</a></li>
+                <li><a href="javascript:void(0)" onclick="openAdminDashboard()"><i class="fa-solid fa-gauge-high"></i> ADMIN PORTAL</a></li>
+                <li><a href="#footer"><i class="fa-solid fa-location-dot"></i> VISIT SHOP</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Menu Button -->
+    <div id="menuBtn">
+        <img src="menu.png" alt="Menu Icon" id="menu">
+    </div>
+
+    <!-- =======================================================
+         FEATURES SECTION
+         ======================================================= -->
+    <section id="features">
+        <div class="title-text">
+            <p>FEATURES</p>
+            <h1>Why Choose Us</h1>
+        </div>
+        <div class="feature-box">
+            <div class="features">
+                <h1>Experienced Staff</h1>
+                <div class="features-desc">
+                    <div class="features-icon">
+                        <i class="fa-solid fa-arrows-to-dot"></i>
+                    </div>
+                    <div class="features-text">
+                        <p>
+                            Our hair studio offers expert styling and personalized care, delivering trendy cuts, vibrant colors, and nourishing treatments using high-quality, eco-friendly products.
+                        </p>
+                    </div>
+                </div>
+                <h1>Pre Booking Online</h1>
+                <div class="features-desc">
+                    <div class="features-icon">
+                        <i class="fa-solid fa-arrows-to-dot"></i>
+                    </div>
+                    <div class="features-text">
+                        <p>
+                            Reserve your favorite stylist and preferred time slot effortlessly through our 24/7 online booking system without waiting in long salon queues.
+                        </p>
+                    </div>
+                </div>
+                <h1>Affordable Cost</h1>
+                <div class="features-desc">
+                    <div class="features-icon">
+                        <i class="fa-solid fa-arrows-to-dot"></i>
+                    </div>
+                    <div class="features-text">
+                        <p>
+                            Our hair studio offers expert styling and personalized care, delivering trendy cuts, vibrant colors, and nourishing treatments using high-quality, eco-friendly products. With skilled professionals and a relaxing, luxurious atmosphere, we ensure every visit leaves you feeling confident and refreshed.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="features-img">
+                <img src="pexels-hikaique-331989.jpg" alt="Barber cutting client hair">
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         SERVICES & PRICING SECTION
+         ======================================================= -->
+    <section id="service">
+        <div class="title-text">
+            <p>SERVICES</p>
+            <h1>We Provide Better</h1>
+        </div>
+
+        <!-- Original 4 Showcase Hover Cards with High-Quality Professional Images -->
+        <div class="service-box">
+            <div class="single-service">
+                <img src="service_styling.jpg" alt="Hair Styling">
+                <div class="overlay"></div>
+                <div class="service-desc">
+                    <h3>Hair Styling</h3>
+                    <hr>
+                    <p>Hairstyles play a significant role in personal expression, fashion, and culture, with a wide variety of styles suited to different hair lengths and textures.</p>
+                </div>
+            </div>
+            <div class="single-service">
+                <img src="service_beard.jpg" alt="Beard Trim">
+                <div class="overlay"></div>
+                <div class="service-desc">
+                    <h3>Beard Trim</h3>
+                    <hr>
+                    <p>The right hairstyle depends on factors such as face shape, hair type, and personal preference, making it an important aspect of self-expression and beauty.</p>
+                </div>
+            </div>
+            <div class="single-service">
+                <img src="service_haircut.jpg" alt="Hair Cut">
+                <div class="overlay"></div>
+                <div class="service-desc">
+                    <h3>Hair Cut</h3>
+                    <hr>
+                    <p>The right hairstyle depends on factors such as face shape, hair type, and personal preference, making it an important aspect of self-expression and beauty.</p>
+                </div>
+            </div>
+            <div class="single-service">
+                <img src="service_shampoo.jpg" alt="Hair Shampoo">
+                <div class="overlay"></div>
+                <div class="service-desc">
+                    <h3>Hair Shampoo</h3>
+                    <hr>
+                    <p>Hairstyles play a significant role in personal expression, fashion, and culture, with a wide variety of styles suited to different hair lengths and textures.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Interactive Service & Pricing Menu -->
+        <div class="services-menu-container">
+            <div class="menu-filter-bar">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="serviceSearchInput" placeholder="Search service (e.g. Haircut, Spa, Color)..." oninput="filterServices()">
+                </div>
+                <div class="category-tabs">
+                    <button class="cat-tab active" onclick="setServiceCategory('All', this)">All</button>
+                    <button class="cat-tab" onclick="setServiceCategory('Haircut', this)">Haircut</button>
+                    <button class="cat-tab" onclick="setServiceCategory('Styling', this)">Styling</button>
+                    <button class="cat-tab" onclick="setServiceCategory('Grooming', this)">Grooming</button>
+                    <button class="cat-tab" onclick="setServiceCategory('Spa', this)">Spa</button>
+                    <button class="cat-tab" onclick="setServiceCategory('Coloring', this)">Coloring</button>
+                    <button class="cat-tab" onclick="setServiceCategory('Bridal', this)">Bridal</button>
+                </div>
+                <div class="price-slider-wrapper">
+                    <span>Max Price:</span>
+                    <input type="range" id="priceRangeInput" min="300" max="4000" step="100" value="4000" oninput="filterServices()">
+                    <strong id="priceRangeLabel" style="color: #009688;">₹4000</strong>
+                </div>
+            </div>
+
+            <!-- Dynamic Services Grid -->
+            <div class="services-grid" id="servicesGridContainer">
+                <!-- Injected via JavaScript from Database -->
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         OUR STYLISTS SECTION
+         ======================================================= -->
+    <section id="stylists">
+        <div class="title-text">
+            <p>STYLISTS</p>
+            <h1>Meet Our Experts</h1>
+        </div>
+
+        <div class="stylists-wrapper">
+            <!-- Stylists Filter Bar -->
+            <div class="stylists-filter-bar">
+                <div class="search-box" style="max-width: 380px;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="stylistSearchInput" placeholder="Search stylist by name or skill..." oninput="filterStylists()">
+                </div>
+                <div class="category-tabs">
+                    <button class="cat-tab active" onclick="setStylistFilter('All', this)">All Experts</button>
+                    <button class="cat-tab" onclick="setStylistFilter('Styling', this)">Styling & Color</button>
+                    <button class="cat-tab" onclick="setStylistFilter('Beard', this)">Beard & Cuts</button>
+                    <button class="cat-tab" onclick="setStylistFilter('Bridal', this)">Bridal & Spa</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Stylists Grid -->
+            <div class="stylists-grid" id="stylistsGridContainer">
+                <!-- Injected via JavaScript from Database -->
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         APPOINTMENT BOOKING SECTION
+         ======================================================= -->
+    <section id="booking">
+        <div class="title-text">
+            <p>APPOINTMENTS</p>
+            <h1>Book Your Session</h1>
+        </div>
+
+        <div class="booking-container">
+            <!-- Left Form Area -->
+            <div class="booking-left">
+                <form id="appointmentBookingForm" onsubmit="handleBookingSubmit(event)">
+                    <div class="booking-form-grid">
+                        <!-- Select Service -->
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-scissors"></i> Select Service *</label>
+                            <select id="bookingServiceSelect" class="form-control" required onchange="handleBookingServiceChange()">
+                                <option value="">-- Choose a Service --</option>
+                                <!-- Injected from DB -->
+                            </select>
+                        </div>
+
+                        <!-- Select Stylist -->
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-user-tie"></i> Select Stylist *</label>
+                            <select id="bookingStylistSelect" class="form-control" required onchange="handleBookingStylistChange()">
+                                <option value="">-- Choose Stylist --</option>
+                                <!-- Injected from DB -->
+                            </select>
+                        </div>
+
+                        <!-- Select Date -->
+                        <div class="form-group">
+                            <label><i class="fa-regular fa-calendar-days"></i> Appointment Date *</label>
+                            <input type="date" id="bookingDateInput" class="form-control" required onchange="handleBookingDateChange()">
+                        </div>
+
+                        <!-- Customer Full Name -->
+                        <div class="form-group">
+                            <label><i class="fa-regular fa-user"></i> Full Name *</label>
+                            <input type="text" id="bookingNameInput" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+
+                        <!-- Customer Phone -->
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-phone"></i> Mobile Phone *</label>
+                            <input type="tel" id="bookingPhoneInput" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                        </div>
+
+                        <!-- Customer Email -->
+                        <div class="form-group">
+                            <label><i class="fa-regular fa-envelope"></i> Email Address *</label>
+                            <input type="email" id="bookingEmailInput" class="form-control" placeholder="name@example.com" required>
+                        </div>
+
+                        <!-- Available Time Slots -->
+                        <div class="form-group full-width">
+                            <label><i class="fa-regular fa-clock"></i> Select Available Time Slot *</label>
+                            <div class="time-slots-container" id="timeSlotsContainer">
+                                <!-- Generated buttons -->
+                            </div>
+                            <input type="hidden" id="bookingSelectedTime" required>
+                        </div>
+
+                        <!-- Coupon Code -->
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-tags"></i> Have a Coupon Code?</label>
+                            <div class="coupon-input-group">
+                                <input type="text" id="bookingCouponInput" class="form-control" placeholder="e.g. WELCOME10">
+                                <button type="button" class="studio-btn studio-btn-outline" onclick="applyCouponCode()">Apply</button>
+                            </div>
+                            <small id="couponMessage" style="margin-top: 5px; font-weight: 500;"></small>
+                        </div>
+
+                        <!-- Special Notes -->
+                        <div class="form-group">
+                            <label><i class="fa-regular fa-message"></i> Special Instructions (Optional)</label>
+                            <textarea id="bookingNotesInput" class="form-control" placeholder="Any preference or request for the stylist..."></textarea>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 25px;">
+                        <button type="submit" class="studio-btn" style="width: 100%; padding: 14px; font-size: 16px;">
+                            <span></span><i class="fa-solid fa-check"></i> Confirm & Book Appointment
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Summary Card -->
+            <div class="booking-right">
+                <div>
+                    <div class="summary-header">
+                        <h3>Booking Summary</h3>
+                        <p>Review your selection before confirming</p>
+                    </div>
+
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Service:</span>
+                            <span id="sumServiceName">Please select</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Stylist:</span>
+                            <span id="sumStylistName">Please select</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Date:</span>
+                            <span id="sumDate">Not chosen</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Time Slot:</span>
+                            <span id="sumTime">Not chosen</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Est. Duration:</span>
+                            <span id="sumDuration">--</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Base Price:</span>
+                            <span id="sumBasePrice">₹0</span>
+                        </div>
+                        <div class="summary-row discount-row" id="sumDiscountRow" style="display: none;">
+                            <span>Discount:</span>
+                            <span id="sumDiscount">-₹0</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-total">
+                        <span>Total Payable:</span>
+                        <span class="total-amount" id="sumTotalAmount">₹0</span>
+                    </div>
+                </div>
+
+                <div class="booking-policy">
+                    <p><i class="fa-solid fa-shield"></i> Free rescheduling & cancellation up to 2 hours prior to your scheduled slot. Instant confirmation sent via SMS/Email.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         HAIR STYLE GALLERY SECTION
+         ======================================================= -->
+    <section id="gallery">
+        <div class="title-text">
+            <p>PORTFOLIO</p>
+            <h1>Hair Style Gallery</h1>
+        </div>
+
+        <div class="gallery-container">
+            <div class="gallery-filters">
+                <button class="gallery-tab active" onclick="filterGallery('all', this)">All Styles</button>
+                <button class="gallery-tab" onclick="filterGallery('haircuts', this)">Haircuts</button>
+                <button class="gallery-tab" onclick="filterGallery('styling', this)">Hair Styling</button>
+                <button class="gallery-tab" onclick="filterGallery('coloring', this)">Hair Coloring</button>
+                <button class="gallery-tab" onclick="filterGallery('bridal', this)">Bridal Styles</button>
+                <button class="gallery-tab" onclick="filterGallery('transformations', this)">Transformations</button>
+            </div>
+
+            <div class="gallery-grid" id="galleryGridContainer">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         OFFERS & COUPONS SECTION
+         ======================================================= -->
+    <section id="offers">
+        <div class="title-text">
+            <p>SPECIAL OFFERS</p>
+            <h1>Deals & Discounts</h1>
+        </div>
+
+        <div class="offers-container" id="offersContainer">
+            <!-- Injected via JavaScript from Database -->
+        </div>
+    </section>
+
+    <!-- =======================================================
+         TESTIMONIALS SECTION (ORIGINAL CELEBS + VERIFIED REVIEWS)
+         ======================================================= -->
+    <section id="testimonial">
+        <div class="title-text">
+            <p>TESTIMONIALS</p>
+            <h1>What Client Says</h1>
+        </div>
+
+        <div class="testimonial-actions">
+            <button class="studio-btn studio-btn-outline" onclick="openReviewModal()">
+                <i class="fa-regular fa-star"></i> Leave a Review
+            </button>
+        </div>
+
+        <div class="testimonial-row" id="testimonialContainer">
+            <!-- Seeded with Dhoni, Ronaldo, Surya + dynamically updated -->
+        </div>
+    </section>
+
+    <!-- =======================================================
+         FOOTER SECTION
+         ======================================================= -->
+    <section id="footer">
+        <div class="title-text">
+            <p>CONTACT</p>
+            <h1>Visit Shop Today</h1>
+        </div>
+        <div class="footer-row">
+            <div class="footer-left">
+                <h1>Opening Hours</h1>
+                <p><i class="fa fa-clock"></i> Monday to Friday - 9:00 AM to 9:00 PM</p>
+                <p><i class="fa fa-clock"></i> Saturday to Sunday - 8:00 AM to 11:00 PM</p>
+            </div> 
+            <div class="footer-right">
+                <h1>Get In Touch</h1>
+                <p><i class="fa fa-location-dot"></i> #Near Vignan University, Main Road</p>
+                <p><i class="fa fa-envelope"></i> contact@hairstudio.com</p>
+                <p><i class="fa fa-phone"></i> +91 98765 43210</p>
+            </div> 
+        </div>
+
+        <div class="footer-bottom">
+            <div>
+                &copy; 2026 Hair Studio. All rights reserved. Handcrafted with passion.
+            </div>
+            <div class="footer-social-links">
+                <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         MODAL 1: BOOKING CONFIRMATION RECEIPT
+         ======================================================= -->
+    <div class="studio-modal-backdrop" id="bookingReceiptModal">
+        <div class="studio-modal-content" style="max-width: 520px;">
+            <div class="studio-modal-header">
+                <h3><i class="fa-solid fa-circle-check"></i> Appointment Confirmed!</h3>
+                <button class="modal-close-btn" onclick="closeModal('bookingReceiptModal')">&times;</button>
+            </div>
+            <div class="studio-modal-body">
+                <div class="receipt-box">
+                    <div class="receipt-icon">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <h2 style="font-size: 22px; color: #111;">Hair Studio Booking Slip</h2>
+                    <p style="color: #666; font-size: 13px;">Thank you! Your appointment has been booked.</p>
+
+                    <div class="receipt-table">
+                        <div class="receipt-row">
+                            <span>Booking ID:</span>
+                            <strong id="receiptId">#HS-0000</strong>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Customer Name:</span>
+                            <strong id="receiptCustomer">--</strong>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Service:</span>
+                            <strong id="receiptService">--</strong>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Stylist:</span>
+                            <strong id="receiptStylist">--</strong>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Date & Time:</span>
+                            <strong id="receiptDateTime">--</strong>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Duration:</span>
+                            <strong id="receiptDuration">--</strong>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Amount Paid:</span>
+                            <strong id="receiptAmount" style="color: #009688; font-size: 16px;">₹0</strong>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Status:</span>
+                            <span class="status-badge confirmed" id="receiptStatus">CONFIRMED</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                        <button type="button" class="studio-btn studio-btn-outline studio-btn-sm" onclick="printAppointmentSlip()">
+                            <i class="fa-solid fa-print"></i> Print Slip
+                        </button>
+                        <button class="studio-btn studio-btn-sm" onclick="closeModal('bookingReceiptModal'); openCustomerDashboard();">
+                            <span></span><i class="fa-solid fa-calendar-days"></i> View in Dashboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="studio-modal-footer">
+                <button class="studio-btn studio-btn-outline studio-btn-sm" onclick="closeModal('bookingReceiptModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 2: CUSTOMER DASHBOARD
+         ======================================================= -->
+    <div class="studio-modal-backdrop" id="customerDashboardModal">
+        <div class="studio-modal-content modal-lg">
+            <div class="studio-modal-header">
+                <h3><i class="fa-solid fa-user-circle"></i> Customer Dashboard</h3>
+                <button class="modal-close-btn" onclick="closeModal('customerDashboardModal')">&times;</button>
+            </div>
+            <div class="studio-modal-body">
+                <!-- User Profile Bar -->
+                <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px 20px; border-radius: 6px; margin-bottom: 20px;">
+                    <div>
+                        <h4 style="font-size: 18px; color: #222;" id="custProfileName">Rahul Sharma</h4>
+                        <p style="font-size: 13px; color: #666;" id="custProfileContact">rahul@gmail.com | +91 98765 00001</p>
+                    </div>
+                    <div>
+                        <span class="top-badge-btn" style="background: #009688; color: #fff; cursor: default;">
+                            <i class="fa-solid fa-gem"></i> Gold Member (3 Visits)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Dashboard Tabs -->
+                <div class="dashboard-tabs">
+                    <button class="dash-tab-btn active" onclick="switchCustomerTab('upcomingTab', this)">
+                        <i class="fa-regular fa-calendar-check"></i> Upcoming Appointments
+                    </button>
+                    <button class="dash-tab-btn" onclick="switchCustomerTab('previousTab', this)">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Previous History
+                    </button>
+                    <button class="dash-tab-btn" onclick="switchCustomerTab('customerAlertsTab', this)" id="custAlertsTabBtn">
+                        <i class="fa-solid fa-bell"></i> Notifications <span class="tab-badge" id="custAlertsTabBadge" style="display: none;">0</span>
+                    </button>
+                    <button class="dash-tab-btn" onclick="switchCustomerTab('profileTab', this)">
+                        <i class="fa-regular fa-id-badge"></i> Edit Profile
+                    </button>
+                </div>
+
+                <!-- Tab 1: Upcoming Appointments -->
+                <div class="dash-panel active" id="upcomingTab">
+                    <div id="customerUpcomingList">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Tab 2: Previous Appointments -->
+                <div class="dash-panel" id="previousTab">
+                    <div id="customerPreviousList">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Tab 3: Customer Notifications / Alerts -->
+                <div class="dash-panel" id="customerAlertsTab">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h4 style="font-size: 15px; margin: 0;"><i class="fa-solid fa-bell"></i> My Appointment Notifications</h4>
+                        <button class="studio-btn studio-btn-outline studio-btn-sm" onclick="markAllNotificationsRead()">
+                            <i class="fa-solid fa-check-double"></i> Mark All as Read
+                        </button>
+                    </div>
+                    <div id="customerAlertsList">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- Tab 3: Profile Settings -->
+                <div class="dash-panel" id="profileTab">
+                    <form onsubmit="handleCustomerProfileSave(event)" style="max-width: 500px;">
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label>Full Name</label>
+                            <input type="text" id="custEditName" class="form-control" placeholder="Your Full Name" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label>Email Address</label>
+                            <input type="email" id="custEditEmail" class="form-control" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>Phone Number</label>
+                            <input type="tel" id="custEditPhone" class="form-control" placeholder="10-digit mobile number" required>
+                        </div>
+                        <button type="submit" class="studio-btn studio-btn-sm">
+                            <span></span>Save Profile Changes
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="studio-modal-footer">
+                <button class="studio-btn studio-btn-outline studio-btn-sm" onclick="closeModal('customerDashboardModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 3: ADMIN DASHBOARD
+         ======================================================= -->
+    <div class="studio-modal-backdrop" id="adminDashboardModal">
+        <div class="studio-modal-content modal-lg">
+            <div class="studio-modal-header">
+                <h3><i class="fa-solid fa-shield-halved"></i> Hair Studio Admin Control Center</h3>
+                <button class="modal-close-btn" onclick="closeModal('adminDashboardModal')">&times;</button>
+            </div>
+            <div class="studio-modal-body">
+                <!-- Statistics Cards -->
+                <div class="admin-stats-grid">
+                    <div class="admin-stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                        <div class="stat-value" id="statCustomers">24</div>
+                        <div class="stat-label">Total Customers</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                        <div class="stat-value" id="statAppointments">0</div>
+                        <div class="stat-label">Total Bookings</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div class="stat-value" id="statTodayAppts">0</div>
+                        <div class="stat-label">Today's Bookings</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-user-tie"></i></div>
+                        <div class="stat-value" id="statStylists">0</div>
+                        <div class="stat-label">Available Stylists</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-scissors"></i></div>
+                        <div class="stat-value" id="statServices">0</div>
+                        <div class="stat-label">Active Services</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                        <div class="stat-value" id="statRevenue">₹0</div>
+                        <div class="stat-label">Total Revenue</div>
+                    </div>
+                </div>
+
+                <!-- Admin Tabs -->
+                <div class="dashboard-tabs">
+                    <button class="dash-tab-btn active" onclick="switchAdminTab('adminApptsTab', this)">
+                        <i class="fa-solid fa-calendar-days"></i> Appointments Management
+                    </button>
+                    <button class="dash-tab-btn" onclick="switchAdminTab('adminAlertsTab', this)" id="adminAlertsTabBtn">
+                        <i class="fa-solid fa-bell"></i> Alerts & Reschedules <span class="tab-badge" id="adminAlertsTabBadge" style="display: none;">0</span>
+                    </button>
+                    <button class="dash-tab-btn" onclick="switchAdminTab('adminServicesTab', this)">
+                        <i class="fa-solid fa-scissors"></i> Services & Pricing
+                    </button>
+                    <button class="dash-tab-btn" onclick="switchAdminTab('adminStylistsTab', this)">
+                        <i class="fa-solid fa-user-tie"></i> Stylists Team
+                    </button>
+                </div>
+
+                <!-- Tab 1: Appointments Management -->
+                <div class="dash-panel active" id="adminApptsTab">
+                    <!-- Filters -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; align-items: center;">
+                        <input type="date" id="adminDateFilter" class="form-control" style="width: auto;" onchange="renderAdminAppointments()">
+                        <select id="adminStatusFilter" class="form-control" style="width: auto;" onchange="renderAdminAppointments()">
+                            <option value="All">All Statuses</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                        <select id="adminStylistFilter" class="form-control" style="width: auto;" onchange="renderAdminAppointments()">
+                            <option value="All">All Stylists</option>
+                        </select>
+                        <button class="studio-btn studio-btn-outline studio-btn-sm" onclick="resetAdminFilters()">Reset Filters</button>
+                    </div>
+
+                    <div class="studio-table-container">
+                        <table class="studio-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer</th>
+                                    <th>Service</th>
+                                    <th>Stylist</th>
+                                    <th>Date & Time</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminAppointmentsTableBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tab 1.5: Admin Alerts & Rescheduled Slots Tab -->
+                <div class="dash-panel" id="adminAlertsTab">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h4 style="font-size: 15px; margin: 0;"><i class="fa-solid fa-triangle-exclamation" style="color: #ff9800;"></i> Slot Updates & Salon Alerts</h4>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="studio-btn studio-btn-outline studio-btn-sm" onclick="markAllNotificationsRead()">
+                                <i class="fa-solid fa-check-double"></i> Mark All Read
+                            </button>
+                            <button class="studio-btn studio-btn-outline studio-btn-sm" onclick="clearReadNotifications()">
+                                <i class="fa-regular fa-trash-can"></i> Clear Read
+                            </button>
+                        </div>
+                    </div>
+                    <div id="adminAlertsList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Tab 2: Services Management -->
+                <div class="dash-panel" id="adminServicesTab">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h4 style="font-size: 16px;">Hair Studio Services & Pricing</h4>
+                        <button class="studio-btn studio-btn-sm" onclick="openAddServiceModal()">
+                            <span></span><i class="fa-solid fa-plus"></i> Add New Service
+                        </button>
+                    </div>
+                    <div class="studio-table-container">
+                        <table class="studio-table">
+                            <thead>
+                                <tr>
+                                    <th>Service Name</th>
+                                    <th>Category</th>
+                                    <th>Duration</th>
+                                    <th>Price (₹)</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminServicesTableBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Stylists Management -->
+                <div class="dash-panel" id="adminStylistsTab">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h4 style="font-size: 16px;">Hair Studio Stylists Roster</h4>
+                        <button class="studio-btn studio-btn-sm" onclick="openAddStylistModal()">
+                            <span></span><i class="fa-solid fa-plus"></i> Add New Stylist
+                        </button>
+                    </div>
+                    <div class="studio-table-container">
+                        <table class="studio-table">
+                            <thead>
+                                <tr>
+                                    <th>Stylist</th>
+                                    <th>Specialization</th>
+                                    <th>Experience</th>
+                                    <th>Rating</th>
+                                    <th>Availability</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminStylistsTableBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="studio-modal-footer">
+                <button class="studio-btn studio-btn-outline studio-btn-sm" onclick="closeModal('adminDashboardModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 4: ADD/EDIT SERVICE MODAL
+         ======================================================= -->
+    <div class="studio-modal-backdrop" id="serviceFormModal">
+        <div class="studio-modal-content" style="max-width: 520px;">
+            <div class="studio-modal-header">
+                <h3 id="serviceModalTitle"><i class="fa-solid fa-scissors"></i> Add New Service</h3>
+                <button class="modal-close-btn" onclick="closeModal('serviceFormModal')">&times;</button>
+            </div>
+            <div class="studio-modal-body">
+                <form id="serviceEditForm" onsubmit="handleSaveService(event)">
+                    <input type="hidden" id="serviceEditId">
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label>Service Name *</label>
+                        <input type="text" id="serviceEditName" class="form-control" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label>Category *</label>
+                        <select id="serviceEditCategory" class="form-control" required>
+                            <option value="Haircut">Haircut</option>
+                            <option value="Styling">Styling</option>
+                            <option value="Grooming">Grooming</option>
+                            <option value="Spa">Spa</option>
+                            <option value="Coloring">Coloring</option>
+                            <option value="Treatment">Treatment</option>
+                            <option value="Bridal">Bridal</option>
+                        </select>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                        <div class="form-group">
+                            <label>Price (₹) *</label>
+                            <input type="number" id="serviceEditPrice" class="form-control" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Duration (Minutes) *</label>
+                            <input type="number" id="serviceEditDuration" class="form-control" min="10" step="5" required>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label>Image Filename or URL</label>
+                        <input type="text" id="serviceEditImage" class="form-control" placeholder="2.jpg or gallery_color.jpg">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label>Description</label>
+                        <textarea id="serviceEditDescription" class="form-control" rows="3" placeholder="Brief service details..."></textarea>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                        <button type="button" class="studio-btn studio-btn-outline studio-btn-sm" onclick="closeModal('serviceFormModal')">Cancel</button>
+                        <button type="submit" class="studio-btn studio-btn-sm"><span></span>Save Service</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 5: ADD/EDIT STYLIST MODAL
+         ======================================================= -->
+    <div class="studio-modal-backdrop" id="stylistFormModal">
+        <div class="studio-modal-content" style="max-width: 520px;">
+            <div class="studio-modal-header">
+                <h3 id="stylistModalTitle"><i class="fa-solid fa-user-tie"></i> Add Stylist</h3>
+                <button class="modal-close-btn" onclick="closeModal('stylistFormModal')">&times;</button>
+            </div>
+            <div class="studio-modal-body">
+                <form id="stylistEditForm" onsubmit="handleSaveStylist(event)">
+                    <input type="hidden" id="stylistEditId">
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label>Stylist Name *</label>
+                        <input type="text" id="stylistEditName" class="form-control" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label>Specialization *</label>
+                        <input type="text" id="stylistEditSpecialization" class="form-control" placeholder="e.g. Hair Styling & Coloring" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                        <div class="form-group">
+                            <label>Experience *</label>
+                            <input type="text" id="stylistEditExperience" class="form-control" placeholder="e.g. 5 Years" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Rating (1.0 to 5.0)</label>
+                            <input type="number" id="stylistEditRating" class="form-control" min="1" max="5" step="0.1" value="4.8">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label>Availability *</label>
+                        <select id="stylistEditAvailability" class="form-control">
+                            <option value="Available Today">Available Today</option>
+                            <option value="Mon - Sat">Mon - Sat</option>
+                            <option value="By Appointment Only">By Appointment Only</option>
+                            <option value="On Leave">On Leave</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label>Photo Filename or URL</label>
+                        <input type="text" id="stylistEditImage" class="form-control" placeholder="stylist_john.jpg">
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                        <button type="button" class="studio-btn studio-btn-outline studio-btn-sm" onclick="closeModal('stylistFormModal')">Cancel</button>
+                        <button type="submit" class="studio-btn studio-btn-sm"><span></span>Save Stylist</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 6: WRITE REVIEW MODAL
+         ======================================================= -->
+    <div class="studio-modal-backdrop" id="reviewModal">
+        <div class="studio-modal-content" style="max-width: 500px;">
+            <div class="studio-modal-header">
+                <h3><i class="fa-regular fa-star"></i> Rate Your Salon Experience</h3>
+                <button class="modal-close-btn" onclick="closeModal('reviewModal')">&times;</button>
+            </div>
+            <div class="studio-modal-body">
+                <form id="reviewSubmitForm" onsubmit="handleReviewSubmit(event)">
+                    <input type="hidden" id="reviewApptId">
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label>Your Name *</label>
+                        <input type="text" id="reviewAuthorName" class="form-control" value="Rahul Sharma" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label>Service Received</label>
+                        <select id="reviewServiceSelect" class="form-control">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label>Select Rating (1 to 5 Stars) *</label>
+                        <div class="star-rating-select" id="starRatingSelect">
+                            <i class="fa-solid fa-star active" data-val="1" onclick="selectStarRating(1)"></i>
+                            <i class="fa-solid fa-star active" data-val="2" onclick="selectStarRating(2)"></i>
+                            <i class="fa-solid fa-star active" data-val="3" onclick="selectStarRating(3)"></i>
+                            <i class="fa-solid fa-star active" data-val="4" onclick="selectStarRating(4)"></i>
+                            <i class="fa-solid fa-star active" data-val="5" onclick="selectStarRating(5)"></i>
+                        </div>
+                        <input type="hidden" id="selectedStarValue" value="5">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 18px;">
+                        <label>Your Review & Feedback *</label>
+                        <textarea id="reviewCommentText" class="form-control" rows="4" placeholder="Tell us how your hair cut, styling, or spa treatment went..." required></textarea>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                        <button type="button" class="studio-btn studio-btn-outline studio-btn-sm" onclick="closeModal('reviewModal')">Cancel</button>
+                        <button type="submit" class="studio-btn studio-btn-sm"><span></span>Submit Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 7: RESCHEDULE APPOINTMENT MODAL
+         ======================================================= -->
+    <div class="studio-modal-backdrop" id="rescheduleModal">
+        <div class="studio-modal-content" style="max-width: 480px;">
+            <div class="studio-modal-header">
+                <h3><i class="fa-regular fa-calendar-days"></i> Reschedule Appointment</h3>
+                <button class="modal-close-btn" onclick="closeModal('rescheduleModal')">&times;</button>
+            </div>
+            <div class="studio-modal-body">
+                <form id="rescheduleForm" onsubmit="handleRescheduleSubmit(event)">
+                    <input type="hidden" id="rescheduleApptId">
+                    <p id="rescheduleApptInfo" style="font-size: 13px; color: #555; margin-bottom: 15px;"></p>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label>New Appointment Date *</label>
+                        <input type="date" id="rescheduleDateInput" class="form-control" required onchange="handleRescheduleDateChange()">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label>New Time Slot *</label>
+                        <select id="rescheduleTimeSelect" class="form-control" required>
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:30 AM">11:30 AM</option>
+                            <option value="01:00 PM">01:00 PM</option>
+                            <option value="02:30 PM">02:30 PM</option>
+                            <option value="04:00 PM">04:00 PM</option>
+                            <option value="05:30 PM">05:30 PM</option>
+                            <option value="07:00 PM">07:00 PM</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                        <button type="button" class="studio-btn studio-btn-outline studio-btn-sm" onclick="closeModal('rescheduleModal')">Cancel</button>
+                        <button type="submit" class="studio-btn studio-btn-sm"><span></span>Save New Schedule</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 8: LIGHTBOX MODAL
+         ======================================================= -->
+    <div class="studio-modal-backdrop" id="lightboxModal">
+        <div class="studio-modal-content lightbox-modal-content">
+            <div class="lightbox-img-wrapper">
+                <button class="modal-close-btn" onclick="closeModal('lightboxModal')" style="position: absolute; top: 12px; right: 15px; z-index: 10; font-size: 28px; color: #fff;">&times;</button>
+                <img id="lightboxImg" src="" alt="Enlarged hairstyle">
+                <div class="lightbox-caption">
+                    <h3 id="lightboxTitle" style="font-size: 18px; margin-bottom: 4px;"></h3>
+                    <p id="lightboxDesc" style="font-size: 13px; color: #ccc; margin-bottom: 12px;"></p>
+                    <a href="#booking" onclick="closeModal('lightboxModal')" class="studio-btn studio-btn-sm">
+                        <span></span>Book This Style
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 9: REAL LOGIN / SIGN IN MODAL
+         ======================================================= -->
+    <div class="studio-modal-backdrop" id="authModal">
+        <div class="studio-modal-content" style="max-width: 460px;">
+            <div class="studio-modal-header">
+                <h3 id="authModalTitle"><i class="fa-solid fa-lock"></i> Account Access</h3>
+                <button class="modal-close-btn" onclick="closeModal('authModal')">&times;</button>
+            </div>
+            <div class="studio-modal-body">
+                <!-- Tab Buttons: Customer Sign In | Admin Login -->
+                <div class="dashboard-tabs" style="margin-bottom: 20px;">
+                    <button class="dash-tab-btn active" id="tabCustomerBtn" onclick="switchAuthTab('customer', this)">
+                        <i class="fa-solid fa-user"></i> Customer Sign In
+                    </button>
+                    <button class="dash-tab-btn" id="tabAdminBtn" onclick="switchAuthTab('admin', this)">
+                        <i class="fa-solid fa-shield-halved"></i> Admin Login
+                    </button>
+                </div>
+
+                <!-- Pre-Auth Info/Warning Message -->
+                <div id="authNoticeBanner" style="display: none; background: #fff3e0; border-left: 4px solid #ff9800; padding: 10px 14px; border-radius: 4px; font-size: 13px; color: #b78103; margin-bottom: 16px;">
+                    <i class="fa-solid fa-circle-exclamation"></i> <span id="authNoticeText"></span>
+                </div>
+
+                <!-- Error Message Banner -->
+                <div id="authErrorBanner" style="display: none; background: #ffebee; border-left: 4px solid #d32f2f; padding: 10px 14px; border-radius: 4px; font-size: 13px; color: #c62828; margin-bottom: 16px;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <span id="authErrorText"></span>
+                </div>
+
+                <!-- PANEL 1: CUSTOMER AUTHENTICATION -->
+                <div id="customerAuthPanel">
+                    <!-- Customer Login Form -->
+                    <form id="customerLoginForm" onsubmit="handleCustomerLoginSubmit(event)">
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label><i class="fa-regular fa-envelope"></i> Email Address *</label>
+                            <input type="email" id="customerLoginEmail" class="form-control" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label><i class="fa-solid fa-key"></i> Password *</label>
+                            <input type="password" id="customerLoginPassword" class="form-control" placeholder="••••••••" required>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 13px;">
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #555;">
+                                <input type="checkbox" id="customerRememberMe"> Remember me
+                            </label>
+                            <a href="javascript:void(0)" onclick="showToast('Please contact salon reception or enter your registered email to reset.', 'info')" style="color: #009688; text-decoration: none; font-weight: 500;">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="studio-btn" style="width: 100%; padding: 12px;" id="customerSignInBtn">
+                            <span></span><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In to My Dashboard
+                        </button>
+                        <div style="text-align: center; margin-top: 18px; font-size: 13px; color: #666;">
+                            Don't have an account? 
+                            <a href="javascript:void(0)" onclick="toggleCustomerAuthMode('register')" style="color: #009688; font-weight: 600; text-decoration: none;">Create Account</a>
+                        </div>
+                    </form>
+
+                    <!-- Customer Register Form (Hidden by default) -->
+                    <form id="customerRegisterForm" style="display: none;" onsubmit="handleCustomerRegisterSubmit(event)">
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label><i class="fa-regular fa-user"></i> Full Name *</label>
+                            <input type="text" id="custRegName" class="form-control" placeholder="Your Full Name" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label><i class="fa-solid fa-phone"></i> Mobile Phone *</label>
+                            <input type="tel" id="custRegPhone" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label><i class="fa-regular fa-envelope"></i> Email Address *</label>
+                            <input type="email" id="custRegEmail" class="form-control" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label><i class="fa-solid fa-key"></i> Create Password * (min. 6 chars)</label>
+                            <input type="password" id="custRegPassword" class="form-control" placeholder="At least 6 characters" minlength="6" required>
+                        </div>
+                        <button type="submit" class="studio-btn" style="width: 100%; padding: 12px;">
+                            <span></span><i class="fa-solid fa-user-plus"></i> Create Customer Account
+                        </button>
+                        <div style="text-align: center; margin-top: 18px; font-size: 13px; color: #666;">
+                            Already registered? 
+                            <a href="javascript:void(0)" onclick="toggleCustomerAuthMode('login')" style="color: #009688; font-weight: 600; text-decoration: none;">Sign In</a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- PANEL 2: ADMIN AUTHENTICATION -->
+                <div id="adminAuthPanel" style="display: none;">
+                    <div style="background: #f7f9f9; border: 1px solid #e0e0e0; padding: 12px; border-radius: 4px; font-size: 12px; color: #555; margin-bottom: 15px;">
+                        <i class="fa-solid fa-shield-halved" style="color: #009688;"></i> 
+                        <strong>Protected Area:</strong> Salon manager & admin credentials required to access the studio control center.
+                    </div>
+                    <form id="adminLoginForm" autocomplete="off" onsubmit="handleAdminLoginSubmit(event)">
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label><i class="fa-regular fa-envelope"></i> Admin Username or Email *</label>
+                            <input type="text" id="adminLoginEmail" name="admin_user_id" class="form-control" placeholder="" value="" autocomplete="off" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label><i class="fa-solid fa-key"></i> Admin Password *</label>
+                            <input type="password" id="adminLoginPassword" name="admin_pass_key" class="form-control" placeholder="" value="" autocomplete="new-password" required>
+                        </div>
+                        <button type="submit" class="studio-btn" style="width: 100%; padding: 12px;">
+                            <span></span><i class="fa-solid fa-shield-halved"></i> Login to Admin Center
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="studio-modal-footer">
+                <button class="studio-btn studio-btn-outline studio-btn-sm" onclick="closeModal('authModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 8: NOTIFICATION CENTER MODAL
+         ======================================================= -->
+    <div class="studio-modal-backdrop" id="notificationsCenterModal">
+        <div class="studio-modal-content" style="max-width: 620px;">
+            <div class="studio-modal-header">
+                <h3><i class="fa-solid fa-bell"></i> Notification Center</h3>
+                <button class="modal-close-btn" onclick="closeModal('notificationsCenterModal')">&times;</button>
+            </div>
+            <div class="studio-modal-body" style="padding-top: 15px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
+                    <div class="notif-filter-group" style="display: flex; gap: 6px;">
+                        <button class="notif-filter-btn active" onclick="filterNotifications('all', this)">All</button>
+                        <button class="notif-filter-btn" onclick="filterNotifications('rescheduled', this)">Rescheduled</button>
+                        <button class="notif-filter-btn" onclick="filterNotifications('unread', this)">Unread</button>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="studio-btn studio-btn-outline studio-btn-sm" style="font-size: 11px; padding: 5px 10px;" onclick="markAllNotificationsRead()">
+                            <i class="fa-solid fa-check-double"></i> Mark All Read
+                        </button>
+                        <button class="studio-btn studio-btn-outline studio-btn-sm" style="font-size: 11px; padding: 5px 10px;" onclick="clearReadNotifications()">
+                            <i class="fa-regular fa-trash-can"></i> Clear Read
+                        </button>
+                    </div>
+                </div>
+                <div id="notificationsCenterList" class="notif-scroll-list">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+            <div class="studio-modal-footer">
+                <button class="studio-btn studio-btn-outline studio-btn-sm" onclick="closeModal('notificationsCenterModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         TOAST NOTIFICATIONS CONTAINER
+         ======================================================= -->
+    <div id="toastContainer"></div>
+
+    <!-- Main JavaScript Logic -->
+    <script src="DTI.js"></script>
+</body>
+</html>

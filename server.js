@@ -995,23 +995,38 @@ async function handleRequest(req, res) {
     // ==========================================================
     // STATIC ASSETS SERVING
     // ==========================================================
-    let filePath = (pathname === '/' || pathname === '/index.html') ? 'index.html' : pathname.replace(/^\//, '');
-    filePath = path.join(__dirname, decodeURIComponent(filePath));
+    let target = (pathname === '/' || pathname === '/index.html') ? 'index.html' : pathname.replace(/^\//, '');
+    target = decodeURIComponent(target);
 
-    fs.stat(filePath, (err, stats) => {
-        if (err || !stats.isFile()) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end('404 Not Found');
-            return;
-        }
+    const candidates = [
+        path.join(__dirname, target),
+        path.join(__dirname, 'public', target),
+        path.join(process.cwd(), target),
+        path.join(process.cwd(), 'public', target)
+    ];
 
-        const ext = path.extname(filePath).toLowerCase();
-        const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+    let foundPath = null;
+    for (const c of candidates) {
+        try {
+            if (fs.existsSync(c) && fs.statSync(c).isFile()) {
+                foundPath = c;
+                break;
+            }
+        } catch (e) {}
+    }
 
-        res.writeHead(200, { 'Content-Type': contentType });
-        const stream = fs.createReadStream(filePath);
-        stream.pipe(res);
-    });
+    if (!foundPath) {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('404 Not Found');
+        return;
+    }
+
+    const ext = path.extname(foundPath).toLowerCase();
+    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+
+    res.writeHead(200, { 'Content-Type': contentType });
+    const stream = fs.createReadStream(foundPath);
+    stream.pipe(res);
 }
 
 const server = http.createServer(handleRequest);
