@@ -31,18 +31,22 @@ function readLocalSeed() {
     return null;
 }
 
+let dbPromise = null;
 // Connect to MongoDB Atlas & Initialize Collections
 async function initMongoDB() {
+    if (mongoDB) return mongoDB;
+    if (dbPromise) return dbPromise;
     if (!MONGODB_URI) {
         console.warn('MONGODB_URI not provided in .env');
-        return;
+        return null;
     }
-    try {
-        console.log('Connecting to MongoDB Atlas...');
-        dbClient = new MongoClient(MONGODB_URI);
-        await dbClient.connect();
-        mongoDB = dbClient.db(DB_NAME);
-        console.log(`Connected successfully to MongoDB Atlas database: ${DB_NAME}`);
+    dbPromise = (async () => {
+        try {
+            console.log('Connecting to MongoDB Atlas...');
+            dbClient = new MongoClient(MONGODB_URI);
+            await dbClient.connect();
+            mongoDB = dbClient.db(DB_NAME);
+            console.log(`Connected successfully to MongoDB Atlas database: ${DB_NAME}`);
 
         // Create unique index on users.email
         await mongoDB.collection('users').createIndex({ email: 1 }, { unique: true });
@@ -132,9 +136,14 @@ async function initMongoDB() {
                 console.log('Seeded gallery into MongoDB Atlas.');
             }
         }
+        return mongoDB;
     } catch (err) {
-        console.error('MongoDB Atlas Connection Error:', err.message);
-    }
+            console.error('MongoDB Atlas Connection Error:', err.message);
+            dbPromise = null;
+            return null;
+        }
+    })();
+    return dbPromise;
 }
 
 // Helper to parse JSON body
@@ -223,9 +232,12 @@ const server = http.createServer(async (req, res) => {
     // REST API ROUTES
     // ==========================================================
     if (pathname.startsWith('/api/')) {
+        if (!mongoDB && MONGODB_URI) {
+            await initMongoDB();
+        }
         if (!mongoDB) {
             res.writeHead(503, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'Database service connecting to MongoDB Atlas. Please try again shortly.' }));
+            res.end(JSON.stringify({ error: 'Database service connecting to MongoDB Atlas. Please ensure MONGODB_URI is configured.' }));
             return;
         }
 
@@ -1003,7 +1015,11 @@ const server = http.createServer(async (req, res) => {
 });
 
 // Start Server and connect to MongoDB Atlas
-server.listen(PORT, async () => {
-    console.log(`Hair Studio Server running at http://localhost:${PORT}`);
-    await initMongoDB();
-});
+if (require.main === module) {
+    server.listen(PORT, async () => {
+        console.log(`Hair Studio Server running at http://localhost:${PORT}`);
+        await initMongoDB();
+    });
+}
+
+module.exports = server;

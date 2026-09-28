@@ -1,4 +1,12 @@
 {
+  "name": "hair-studio",
+  "version": "1.0.0",
+  "description": "Hair Studio Luxury Salon & Barber Web Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test-studio.js"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "dotenv": "^18.0.4",

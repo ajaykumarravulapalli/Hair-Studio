@@ -38,3 +38,15 @@ A luxury hair studio and barber salon web application with online appointment bo
    ```
 
 4. Open `http://localhost:5000` (or `DTI.html`) in your browser.
+
+## Deploying to Vercel
+
+1. Import the repository in [Vercel](https://vercel.com): `ajaykumarravulapalli/Hair-Studio`.
+2. Keep the default build and output settings (handled automatically via `vercel.json` and `api/index.js`).
+3. Add the following **Environment Variables** in Vercel Project Settings:
+   - `MONGODB_URI`: Your MongoDB Atlas connection string.
+   - `DB_NAME`: Database name (e.g. `hairstudio`).
+   - `ADMIN_EMAIL`: `ajayravulapalli.555@gmail.com`
+   - `ADMIN_PASSWORD`: Your admin password.
+   - `JWT_SECRET`: A secure random secret string for JWT authentication.
+4. Click **Deploy**. Vercel will host the frontend on its global Edge CDN and run the backend API as serverless functions.
