@@ -1,0 +1,311 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "name": "Hair Styling",
+      "category": "Styling",
+      "price": 600,
+      "duration": 45,
+      "image": "service_styling.jpg",
+      "description": "Personalized hair styling crafted to match your face profile, hair texture, and individual expression."
+    },
+    {
+      "id": 2,
+      "name": "Beard Trim & Grooming",
+      "category": "Grooming",
+      "price": 350,
+      "duration": 30,
+      "image": "service_beard.jpg",
+      "description": "Precision beard sculpt, hot towel prep, razor line-up, and nourishment with organic beard balm."
+    },
+    {
+      "id": 3,
+      "name": "Signature Hair Cut",
+      "category": "Haircut",
+      "price": 500,
+      "duration": 30,
+      "image": "service_haircut.jpg",
+      "description": "Tailored haircut with consultation, precision scissor and clipper work, wash and blow-dry finish."
+    },
+    {
+      "id": 4,
+      "name": "Hair Shampoo & Wash",
+      "category": "Hair Care",
+      "price": 400,
+      "duration": 30,
+      "image": "service_shampoo.jpg",
+      "description": "Scalp invigorating herbal shampoo wash, deep conditioning, and pressure point scalp massage."
+    },
+    {
+      "id": 5,
+      "name": "Hair Spa & Nourishment",
+      "category": "Spa",
+      "price": 1200,
+      "duration": 60,
+      "image": "service_hair_spa.jpg",
+      "description": "Deep moisture restoration hair spa to revive dry, dull hair, leaving it silky, bouncy, and hydrated."
+    },
+    {
+      "id": 6,
+      "name": "Hair Coloring & Highlights",
+      "category": "Coloring",
+      "price": 2000,
+      "duration": 90,
+      "image": "gallery_color.jpg",
+      "description": "Ammonia-free global color, balayage, or fashion highlights with long-lasting shine and color lock."
+    },
+    {
+      "id": 7,
+      "name": "Keratin Treatment",
+      "category": "Treatment",
+      "price": 2500,
+      "duration": 120,
+      "image": "service_treatment.jpg",
+      "description": "Intense protein smoothing therapy to eliminate stubborn frizz, repair damage, and add mirror shine."
+    },
+    {
+      "id": 8,
+      "name": "Royal Bridal Hair Styling",
+      "category": "Bridal",
+      "price": 3500,
+      "duration": 120,
+      "image": "gallery_bridal.jpg",
+      "description": "Elegant bridal updos, intricate braids, delicate floral styling, and all-day fixation for your special event."
+    }
+  ],
+  "stylists": [
+    {
+      "id": 1,
+      "name": "John Miller",
+      "image": "stylist_john.jpg",
+      "specialization": "Hair Styling & Coloring",
+      "experience": "5 Years",
+      "rating": 4.9,
+      "reviewsCount": 142,
+      "availability": "Available Today",
+      "phone": "+91 98765 43210"
+    },
+    {
+      "id": 2,
+      "name": "Sophia Loren",
+      "image": "stylist_sophia.jpg",
+      "specialization": "Bridal & Hair Spa Specialist",
+      "experience": "7 Years",
+      "rating": 4.8,
+      "reviewsCount": 124,
+      "availability": "Available Today",
+      "phone": "+91 98765 43211"
+    },
+    {
+      "id": 3,
+      "name": "Crishna Patel",
+      "image": "stylist_crishna.jpg",
+      "specialization": "Classic Cuts & Beard Grooming",
+      "experience": "6 Years",
+      "rating": 4.9,
+      "reviewsCount": 98,
+      "availability": "Available Today",
+      "phone": "+91 98765 43212"
+    },
+    {
+      "id": 4,
+      "name": "Alex Vance",
+      "image": "pexels-hikaique-331989.jpg",
+      "specialization": "Modern Fades & Keratin Treatments",
+      "experience": "4 Years",
+      "rating": 4.7,
+      "reviewsCount": 86,
+      "availability": "Available Today",
+      "phone": "+91 98765 43213"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "HS-8421",
+      "customerName": "Rahul Sharma",
+      "customerEmail": "rahul@gmail.com",
+      "customerPhone": "9876500001",
+      "serviceId": 3,
+      "serviceName": "Signature Hair Cut",
+      "stylistId": 1,
+      "stylistName": "John Miller",
+      "date": "2026-09-30",
+      "time": "11:30 AM",
+      "duration": 30,
+      "amount": 450,
+      "discount": 50,
+      "coupon": "WELCOME10",
+      "status": "Confirmed",
+      "notes": "Prefers low taper fade on sides",
+      "createdAt": "2026-09-28T08:00:00Z"
+    },
+    {
+      "id": "HS-7319",
+      "customerName": "Rahul Sharma",
+      "customerEmail": "rahul@gmail.com",
+      "customerPhone": "9876500001",
+      "serviceId": 5,
+      "serviceName": "Hair Spa & Nourishment",
+      "stylistId": 2,
+      "stylistName": "Sophia Loren",
+      "date": "2026-09-15",
+      "time": "02:30 PM",
+      "duration": 60,
+      "amount": 960,
+      "discount": 240,
+      "coupon": "WEEKEND20",
+      "status": "Completed",
+      "notes": "Deep conditioning for dry ends",
+      "createdAt": "2026-09-14T10:00:00Z",
+      "reviewed": true
+    },
+    {
+      "id": "HS-9104",
+      "customerName": "Anita Verma",
+      "customerEmail": "anita@example.com",
+      "customerPhone": "9876500002",
+      "serviceId": 8,
+      "serviceName": "Royal Bridal Hair Styling",
+      "stylistId": 2,
+      "stylistName": "Sophia Loren",
+      "date": "2026-10-02",
+      "time": "10:00 AM",
+      "duration": 120,
+      "amount": 3000,
+      "discount": 500,
+      "coupon": "BRIDAL500",
+      "status": "Confirmed",
+      "notes": "Bridal trial styling session",
+      "createdAt": "2026-09-27T14:30:00Z"
+    },
+    {
+      "id": "HS-6201",
+      "customerName": "Karthik Reddy",
+      "customerEmail": "karthik@example.com",
+      "customerPhone": "9876500003",
+      "serviceId": 2,
+      "serviceName": "Beard Trim & Grooming",
+      "stylistId": 3,
+      "stylistName": "Crishna Patel",
+      "date": "2026-09-20",
+      "time": "04:00 PM",
+      "duration": 30,
+      "amount": 350,
+      "discount": 0,
+      "coupon": "",
+      "status": "Completed",
+      "notes": "Razor sharp line up",
+      "createdAt": "2026-09-19T11:00:00Z",
+      "reviewed": false
+    }
+  ],
+  "coupons": [
+    {
+      "code": "WEEKEND20",
+      "type": "percent",
+      "discount": 20,
+      "minAmount": 800,
+      "description": "20% OFF on Hair Spa and Premium services!"
+    },
+    {
+      "code": "BRIDAL500",
+      "type": "flat",
+      "discount": 500,
+      "minAmount": 2000,
+      "description": "₹500 OFF on Bridal Hair Styling Packages!"
+    },
+    {
+      "code": "WELCOME10",
+      "type": "percent",
+      "discount": 10,
+      "minAmount": 400,
+      "description": "10% OFF on your First Hair Studio Visit!"
+    },
+    {
+      "code": "COLOR15",
+      "type": "percent",
+      "discount": 15,
+      "minAmount": 1500,
+      "description": "15% OFF on Hair Coloring & Balayage!"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "name": "MS DHONI",
+      "handle": "@mahi7",
+      "image": "dhoni.jpg",
+      "rating": 5,
+      "text": "I recently visited Hair Stdio and had a wonderful experience. The staff was friendly and professional, and the stylist really listened to my preferences, delivering exactly what I wanted. The salon was clean and had a relaxing atmosphere.",
+      "serviceName": "Hair Cut & Beard Trim",
+      "stylistName": "Crishna Patel",
+      "date": "2026-09-10"
+    },
+    {
+      "id": 2,
+      "name": "CRISTIANO RONALDO",
+      "handle": "@ronaldo",
+      "image": "ronaldo.jpeg.jpg",
+      "rating": 5,
+      "text": "I recently visited Hair Stdio and had a wonderful experience. The staff was friendly and professional, and the stylist really listened to my preferences, delivering exactly what I wanted.",
+      "serviceName": "Signature Hair Cut",
+      "stylistName": "John Miller",
+      "date": "2026-09-12"
+    },
+    {
+      "id": 3,
+      "name": "ACTOR SURYA",
+      "handle": "@actorsurya",
+      "image": "surya.jpeg.jpg",
+      "rating": 5,
+      "text": "I recently visited Hair Stdio and had a wonderful experience. The salon was clean and had a relaxing atmosphere.",
+      "serviceName": "Hair Styling",
+      "stylistName": "John Miller",
+      "date": "2026-09-18"
+    }
+  ],
+  "gallery": [
+    {
+      "id": 1,
+      "title": "Modern Precision Fade Cut",
+      "category": "haircuts",
+      "image": "gallery_fade_cut.jpg",
+      "desc": "Razor-sharp temple taper fade with textured matte scissor crop on top."
+    },
+    {
+      "id": 2,
+      "title": "Sun-Kissed Balayage Waves",
+      "category": "coloring",
+      "image": "gallery_color.jpg",
+      "desc": "Seamless hand-painted caramel and warm blonde dimensional highlights."
+    },
+    {
+      "id": 3,
+      "title": "Royal Bridal Braided Updo",
+      "category": "bridal",
+      "image": "gallery_bridal.jpg",
+      "desc": "Romantic crown braid with fresh floral accents and delicate framing curls."
+    },
+    {
+      "id": 4,
+      "title": "Glamour Hollywood Waves",
+      "category": "styling",
+      "image": "gallery_glam_waves.jpg",
+      "desc": "Ultra-glossy, voluminous cascading waves with long-lasting silk bounce."
+    },
+    {
+      "id": 5,
+      "title": "Mirror Shine Keratin Makeover",
+      "category": "transformations",
+      "image": "service_treatment.jpg",
+      "desc": "Intense smoothing keratin transformation eliminating frizz with liquid glass shine."
+    },
+    {
+      "id": 6,
+      "title": "Beard Sculpt & Clean Razor Shave",
+      "category": "styling",
+      "image": "service_beard.jpg",
+      "desc": "Precision hot towel beard detailing with crisp razor lines and organic oils."
+    }
+  ]
+}
