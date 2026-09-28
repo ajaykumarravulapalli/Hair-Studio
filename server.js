@@ -13,8 +13,11 @@ const DB_NAME = process.env.DB_NAME || 'hairstudio';
 const JWT_SECRET = process.env.JWT_SECRET || 'hairstudio_jwt_secret_key_2026';
 const DB_FILE = path.join(__dirname, 'db.json');
 
-let dbClient = null;
-let mongoDB = null;
+// ---- Serverless-safe global connection caching ----
+// In Vercel serverless, the module scope persists across warm invocations.
+// Using global ensures the connection survives even if the module is re-evaluated.
+let dbClient = global._mongoClient || null;
+let mongoDB = global._mongoDB || null;
 
 // Read db.json fallback / seed template
 const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || 'ajayravulapalli.555@gmail.com').toLowerCase().trim();
@@ -31,7 +34,8 @@ function readLocalSeed() {
     return null;
 }
 
-let dbPromise = null;
+let dbPromise = global._mongoPromise || null;
+
 // Connect to MongoDB Atlas & Initialize Collections
 async function initMongoDB() {
     if (mongoDB) return mongoDB;
@@ -40,112 +44,150 @@ async function initMongoDB() {
         console.warn('MONGODB_URI not provided in .env');
         return null;
     }
+
     dbPromise = (async () => {
-        try {
-            console.log('Connecting to MongoDB Atlas...');
-            dbClient = new MongoClient(MONGODB_URI, {
-                family: 4,
-                serverSelectionTimeoutMS: 8000
-            });
-            await dbClient.connect();
-            mongoDB = dbClient.db(DB_NAME);
-            console.log(`Connected successfully to MongoDB Atlas database: ${DB_NAME}`);
+        // Retry once on failure (handles transient cold-start SSL issues)
+        for (let attempt = 1; attempt <= 2; attempt++) {
+            try {
+                console.log(`Connecting to MongoDB Atlas (attempt ${attempt})...`);
+                dbClient = new MongoClient(MONGODB_URI, {
+                    // Force IPv4 to avoid DNS resolution issues in serverless
+                    family: 4,
+                    // Longer timeout for serverless cold starts
+                    serverSelectionTimeoutMS: 15000,
+                    connectTimeoutMS: 15000,
+                    socketTimeoutMS: 45000,
+                    // Explicit TLS config to prevent SSL alert 80 in Vercel Lambda
+                    tls: true,
+                    tlsAllowInvalidCertificates: false,
+                    // Serverless-optimized pool size
+                    maxPoolSize: 5,
+                    minPoolSize: 0,
+                    maxIdleTimeMS: 10000,
+                    // Use the new topology engine
+                    directConnection: false,
+                    retryWrites: true,
+                    retryReads: true,
+                    w: 'majority'
+                });
+                await dbClient.connect();
+                mongoDB = dbClient.db(DB_NAME);
 
-        // Create unique index on users.email
-        await mongoDB.collection('users').createIndex({ email: 1 }, { unique: true });
+                // Cache on global for warm invocations
+                global._mongoClient = dbClient;
+                global._mongoDB = mongoDB;
+                global._mongoPromise = dbPromise;
 
-        // Ensure ONLY ajayravulapalli.555@gmail.com is configured as Admin
-        await mongoDB.collection('users').deleteMany({ role: 'admin', email: { $ne: ADMIN_EMAIL } });
+                console.log(`Connected successfully to MongoDB Atlas database: ${DB_NAME}`);
 
-        const adminHash = bcrypt.hashSync(ADMIN_PASSWORD, 10);
-        await mongoDB.collection('users').updateOne(
-            { email: ADMIN_EMAIL },
-            {
-                $set: {
-                    name: 'Ajay (Administrator)',
-                    email: ADMIN_EMAIL,
-                    password: adminHash,
-                    phone: '+91 98765 00000',
-                    role: 'admin',
-                    updatedAt: new Date()
-                },
-                $setOnInsert: {
-                    createdAt: new Date()
+                // Create unique index on users.email
+                await mongoDB.collection('users').createIndex({ email: 1 }, { unique: true });
+
+                // Ensure ONLY ajayravulapalli.555@gmail.com is configured as Admin
+                await mongoDB.collection('users').deleteMany({ role: 'admin', email: { $ne: ADMIN_EMAIL } });
+
+                const adminHash = bcrypt.hashSync(ADMIN_PASSWORD, 10);
+                await mongoDB.collection('users').updateOne(
+                    { email: ADMIN_EMAIL },
+                    {
+                        $set: {
+                            name: 'Ajay (Administrator)',
+                            email: ADMIN_EMAIL,
+                            password: adminHash,
+                            phone: '+91 98765 00000',
+                            role: 'admin',
+                            updatedAt: new Date()
+                        },
+                        $setOnInsert: {
+                            createdAt: new Date()
+                        }
+                    },
+                    { upsert: true }
+                );
+                console.log(`Configured exclusive Admin account: ${ADMIN_EMAIL}`);
+
+                // Seed default Customer if not present
+                const customerPasswordHash = bcrypt.hashSync('password123', 10);
+                await mongoDB.collection('users').updateOne(
+                    { email: 'rahul@gmail.com' },
+                    {
+                        $setOnInsert: {
+                            name: 'Rahul Sharma',
+                            email: 'rahul@gmail.com',
+                            password: customerPasswordHash,
+                            phone: '9876500001',
+                            role: 'customer',
+                            createdAt: new Date()
+                        }
+                    },
+                    { upsert: true }
+                );
+
+                // Seed data if collections are empty
+                const seed = readLocalSeed();
+                if (seed) {
+                    // Seed Services
+                    const servicesCount = await mongoDB.collection('services').countDocuments();
+                    if (servicesCount === 0 && seed.services && seed.services.length > 0) {
+                        await mongoDB.collection('services').insertMany(seed.services);
+                        console.log('Seeded services into MongoDB Atlas.');
+                    }
+
+                    // Seed Stylists
+                    const stylistsCount = await mongoDB.collection('stylists').countDocuments();
+                    if (stylistsCount === 0 && seed.stylists && seed.stylists.length > 0) {
+                        await mongoDB.collection('stylists').insertMany(seed.stylists);
+                        console.log('Seeded stylists into MongoDB Atlas.');
+                    }
+
+                    // Seed Appointments
+                    const apptsCount = await mongoDB.collection('appointments').countDocuments();
+                    if (apptsCount === 0 && seed.appointments && seed.appointments.length > 0) {
+                        await mongoDB.collection('appointments').insertMany(seed.appointments);
+                        console.log('Seeded appointments into MongoDB Atlas.');
+                    }
+
+                    // Seed Coupons
+                    const couponsCount = await mongoDB.collection('coupons').countDocuments();
+                    if (couponsCount === 0 && seed.coupons && seed.coupons.length > 0) {
+                        await mongoDB.collection('coupons').insertMany(seed.coupons);
+                        console.log('Seeded coupons into MongoDB Atlas.');
+                    }
+
+                    // Seed Reviews (genuine reviews only)
+                    const reviewsCount = await mongoDB.collection('reviews').countDocuments();
+                    if (reviewsCount === 0 && seed.reviews && seed.reviews.length > 0) {
+                        await mongoDB.collection('reviews').insertMany(seed.reviews);
+                        console.log('Seeded reviews into MongoDB Atlas.');
+                    }
+
+                    // Seed Gallery
+                    const galleryCount = await mongoDB.collection('gallery').countDocuments();
+                    if (galleryCount === 0 && seed.gallery && seed.gallery.length > 0) {
+                        await mongoDB.collection('gallery').insertMany(seed.gallery);
+                        console.log('Seeded gallery into MongoDB Atlas.');
+                    }
                 }
-            },
-            { upsert: true }
-        );
-        console.log(`Configured exclusive Admin account: ${ADMIN_EMAIL}`);
-
-        // Seed default Customer if not present
-        const customerPasswordHash = bcrypt.hashSync('password123', 10);
-        await mongoDB.collection('users').updateOne(
-            { email: 'rahul@gmail.com' },
-            {
-                $setOnInsert: {
-                    name: 'Rahul Sharma',
-                    email: 'rahul@gmail.com',
-                    password: customerPasswordHash,
-                    phone: '9876500001',
-                    role: 'customer',
-                    createdAt: new Date()
+                return mongoDB;
+            } catch (err) {
+                console.error(`MongoDB Atlas Connection Error (attempt ${attempt}):`, err.message);
+                // Reset state for retry
+                dbClient = null;
+                mongoDB = null;
+                global._mongoClient = null;
+                global._mongoDB = null;
+                if (attempt === 2) {
+                    dbPromise = null;
+                    global._mongoPromise = null;
+                    return null;
                 }
-            },
-            { upsert: true }
-        );
-
-        // Seed data if collections are empty
-        const seed = readLocalSeed();
-        if (seed) {
-            // Seed Services
-            const servicesCount = await mongoDB.collection('services').countDocuments();
-            if (servicesCount === 0 && seed.services && seed.services.length > 0) {
-                await mongoDB.collection('services').insertMany(seed.services);
-                console.log('Seeded services into MongoDB Atlas.');
+                // Wait 1 second before retry
+                await new Promise(r => setTimeout(r, 1000));
             }
-
-            // Seed Stylists
-            const stylistsCount = await mongoDB.collection('stylists').countDocuments();
-            if (stylistsCount === 0 && seed.stylists && seed.stylists.length > 0) {
-                await mongoDB.collection('stylists').insertMany(seed.stylists);
-                console.log('Seeded stylists into MongoDB Atlas.');
-            }
-
-            // Seed Appointments
-            const apptsCount = await mongoDB.collection('appointments').countDocuments();
-            if (apptsCount === 0 && seed.appointments && seed.appointments.length > 0) {
-                await mongoDB.collection('appointments').insertMany(seed.appointments);
-                console.log('Seeded appointments into MongoDB Atlas.');
-            }
-
-            // Seed Coupons
-            const couponsCount = await mongoDB.collection('coupons').countDocuments();
-            if (couponsCount === 0 && seed.coupons && seed.coupons.length > 0) {
-                await mongoDB.collection('coupons').insertMany(seed.coupons);
-                console.log('Seeded coupons into MongoDB Atlas.');
-            }
-
-            // Seed Reviews (genuine reviews only)
-            const reviewsCount = await mongoDB.collection('reviews').countDocuments();
-            if (reviewsCount === 0 && seed.reviews && seed.reviews.length > 0) {
-                await mongoDB.collection('reviews').insertMany(seed.reviews);
-                console.log('Seeded reviews into MongoDB Atlas.');
-            }
-
-            // Seed Gallery
-            const galleryCount = await mongoDB.collection('gallery').countDocuments();
-            if (galleryCount === 0 && seed.gallery && seed.gallery.length > 0) {
-                await mongoDB.collection('gallery').insertMany(seed.gallery);
-                console.log('Seeded gallery into MongoDB Atlas.');
-            }
-        }
-        return mongoDB;
-    } catch (err) {
-            console.error('MongoDB Atlas Connection Error:', err.message);
-            dbPromise = null;
-            return null;
         }
     })();
+
+    global._mongoPromise = dbPromise;
     return dbPromise;
 }
 

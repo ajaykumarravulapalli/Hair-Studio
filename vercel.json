@@ -1,11 +1,9 @@
 {
   "version": 2,
   "functions": {
-    "server.js": {
-      "includeFiles": "{*.html,*.css,*.js,*.json,*.jpg,*.png,*.webp,public/**}"
-    },
     "api/index.js": {
-      "includeFiles": "{*.html,*.css,*.js,*.json,*.jpg,*.png,*.webp,public/**}"
+      "maxDuration": 30,
+      "includeFiles": "{server.js,db.json,*.html,*.css,*.js,*.json,*.jpg,*.png,*.webp,*.ico,public/**}"
     }
   },
   "rewrites": [
